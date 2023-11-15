@@ -3,7 +3,7 @@ project(move_semantics)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_compile_options(-Wall -Wextra -Wpedantic -fno-elide-constructors)
+add_compile_options(-Wall -Wextra -Wpedantic) #-fno-elide-constructors)
 
 include(FetchContent)
 
@@ -15,10 +15,13 @@ FetchContent_Declare(
 
 FetchContent_MakeAvailable(fmt)
 
+include_directories(util)
+
 add_executable(move_semantics
         main.cpp
         util/object_lifetime_tracker.h
-        src/copy_elision.cpp
+        src/chapters1-6/copy_elision.h
+        src/chapters1-6/copy_elision.cpp
 )
 
 target_link_libraries(move_semantics PRIVATE fmt::fmt)
